@@ -1,0 +1,212 @@
+<style>
+	body {
+	  font-family: "Lato", sans-serif;
+	}
+
+	.sidenav {
+	  height: 100%;
+	  width: 0%;
+	  position: fixed;
+	  z-index: 2;
+	  top: 0%;
+	  left: 0%;
+	  background-color: #111;
+	  overflow-x: hidden;
+	  transition: 0.5s;
+	  padding-top: 60px;
+	}
+	#myBoxback{
+		position: fixed;
+		z-index: 1;
+		/*border: 1px solid red;*/
+		width: 100%;
+		height: 100%;
+		left: 0px;
+		top: 0px;
+		display: block;
+		transition: 0.3s;
+	}
+	.sidenav a {
+	  padding: 8px 8px 8px 32px;
+	  text-decoration: none;
+	  font-size: 25px;
+	  color: #818181;
+	  display: block;
+	  transition: 0.3s;
+	}
+
+	.sidenav a:hover {
+	  color: #f1f1f1;
+	}
+
+	.sidenav .closebtn {
+	  position: absolute;
+	  top: 0;
+	  right: 25px;
+	  font-size: 36px;
+	  margin-left: 50px;
+	}
+
+	#row {
+	  transition: margin-left .5s;
+	}
+
+	@media screen and (max-height: 450px) {
+	  .sidenav {padding-top: 15px;}
+	  .sidenav a {font-size: 18px;}
+	}
+</style>
+<div id="mySidenav" class="sidenav">
+  <a href="#" id="cache-nim">About</a>
+  <a href="#" data-toggle="modal" data-target="#box-edit" onclick="boxUbah('myself')">Ubah Data Diri <i class="fa fa-pencil-square-o" style="float: right;" aria-hidden="true"></i></a>
+  <a href="#" onclick="logout()">Keluar <i class="fa fa-sign-out" style="float: right;" aria-hidden="true"></i></a>
+</div>
+<div id="myBoxback" onclick="closeNav()">
+	
+</div>
+<div class="row" id="row">
+	<!-- popup box -->
+	<div class="modal fade" id="box-add" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<label>Tambah Data</label>
+					<button type="button" class="close" data-dismiss="modal" onclick="clearInput()"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+				</div>
+				<div class="modal-body">
+					<form id="form-add">
+					  <input type="text" id="nim-add" name="nim-add" class="form-control" placeholder="NIM" onkeypress="return onlyNumeric(event)" required autofocus>
+					  <input type="text" id="nama-add" name="nama-add" class="form-control" placeholder="Nama" required>
+					  <input type="text" id="progdi-add" name="progdi-add" class="form-control" placeholder="Progdi" required>
+					  <input type="text" id="kelas-add" name="kelas-add" class="form-control" placeholder="Kelas" required>
+					  <input type="text" id="email-add" name="email-add" class="form-control" placeholder="Email" required>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-lg btn-primary btn-block btn-simpan" onclick="tambah()">SIMPAN</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- -->
+
+	<!-- popup box -->
+	<div class="modal fade" id="box-edit" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<label>Ubah Data</label>
+					<button type="button" class="close" data-dismiss="modal" onclick="clearInput()"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+				</div>
+				<div class="modal-body">
+					<form id="form-edit">
+						<input type="text" id="nim-default" name="nim-default" class="form-control" value="" hidden="" readonly="">
+						<input type="text" id="email-default" name="email-default" class="form-control" value="" hidden="" readonly="">
+						<input type="text" id="nim-edit" name="nim-edit" class="form-control" value="" onkeypress="return onlyNumeric(event)" required autofocus>
+						<input type="text" id="nama-edit" name="nama-edit" class="form-control" value="" required>
+						<input type="text" id="progdi-edit" name="progdi-edit" class="form-control" value="" required>
+						<input type="text" id="kelas-edit" name="kelas-edit" class="form-control" value="" required>
+						<input type="text" id="email-edit" name="email-edit" class="form-control" value="" required>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-lg btn-primary btn-block btn-simpan" onclick="ubah()">SIMPAN</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- -->
+	<style type="text/css">
+		.btn-logout{
+			float: right;
+		}
+	</style>
+	<style type="3"></style>
+	<div class="box-header">
+		<label class="label label-header">
+			<span style="font-size:30px;cursor:pointer; color: white; margin-left: 25%;" onclick="openNav()">&#9776;</span>
+		</label>
+		<label class="label label-header label-nama" id="cache-nama">
+			nama
+		</label>
+	</div>
+	<div class="box-isi">
+		<div class="box-isi-atas">
+			<label class="isi-label">Data Mahasiswa</label>
+			<button type="button" class="btn btn-primary btn-md btn-tambah" id="btn-tambah" data-toggle="modal" data-target="#box-add">Tambah <i class="fa fa-plus" aria-hidden="true"></i></button>
+		</div>
+		<span id="del" class="icon-del" hidden="">
+			<i class="fa fa-plus" aria-hidden="true"></i>
+			<i class="fa fa-trash-o" aria-hidden="true"></i>
+			<i class="fa fa-info-circle" aria-hidden="true"></i>
+			<i class="fa fa-minus-circle" aria-hidden="true"></i>
+			<i class="fa fa-plus-circle" aria-hidden="true"></i>
+			<i class="fa fa-floppy-o" aria-hidden="true"></i>
+			<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+			<i class="fa fa-user" aria-hidden="true"></i>
+			<i class="fa fa-unlock" aria-hidden="true"></i>
+			<i class="fa fa-unlock-alt" aria-hidden="true"></i>
+			<i class="fa fa-file-o" aria-hidden="true"></i>
+		</span>
+	</div>
+	<div class="col-xs-12 w-100">
+	  	<div class="table-responsive">
+	  		<center>
+			    <table class="table table-bordered table-hover"">
+					<thead>
+						<tr>
+						  <th width="30%">NIM</th>
+						  <th width="60%">Nama</th>
+						  <th width="10%">Aksi</th>
+						</tr>
+					</thead>
+					<tr hidden="">
+						<td>isi nim</td>
+						<td>isi nama
+							<div>
+								<div id="box-tb-hide-" hidden="">
+									<label id="nim-">A</label>
+									<label id="nama-">B</label>
+								</div>
+								<div id="box-show-" class="box-show-all">
+									<div class="box-progdi box-datatable">
+										<label class="lbl-datatable datatable">Progdi</label><div class="div-datatable datatable" id="progdi-"> : C</div>
+									</div>
+									<div class="box-kelas box-datatable">
+										<label class="lbl-datatable datatable">Kelas</label><div class="div-datatable datatable" id="kelas-"> : D</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td class="i-aksi">
+							<span class="icon-button">
+								<i class="fa fa-info-circle icon-aksi" aria-hidden="true" onclick="showMore()"></i>
+								<i class="fa fa-times-circle icon-aksi" aria-hidden="true" onclick="hideMore()"></i>
+							</span>
+						</td>
+					</tr>
+					<tbody id="test-load">
+						<tr>
+							<td>isi nim</td>
+							<td>isi nama</td>
+							<td>isi aksi</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+						  <td colspan="5" class="text-center">Data diperoleh dari <a href="http://darmaji-lab.xyz" target="_blank">darmaji-lab.xyz</a>
+						</tr>
+					</tfoot>
+			    </table>
+			</center>
+	  	</div><!--end of .table-responsive-->
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		loadPage();
+		cekLogin();
+		loadMore();
+		$('#myBoxback').hide();
+	});
+</script>

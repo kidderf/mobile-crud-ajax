@@ -1,0 +1,72 @@
+.box-header{
+	background-color: black;
+	height: 10%;
+	width: 100%;
+}
+.box-isi{
+	width: 100%;
+}
+.box-isi-atas{
+	width: 100%;
+	padding-top: 10%;
+	margin-bottom: 3%;
+}
+.test-load{
+	border: 1px solid red;
+	position: fixed;left: 0px; top: 0px;
+}
+.icon-del{
+	border: 1px solid red;
+	color: black;
+}
+.w-100{
+	width: 100%;
+}
+.table{
+	width: 99%;
+}
+.i-aksi{
+	text-align: center;
+}
+.icon-button{
+	font-size: 30px;
+	cursor: pointer;
+}
+.datatable{
+	float: left;
+}
+.div-datatable{
+	width: 75%;
+}
+.lbl-datatable{
+	width: 20%;
+}
+.box-datatable{
+	border: 1px solid;
+	width: 100%;
+	margin-top: 35px;
+}
+.icon-aksi{
+	float: left;
+}
+.infohide-all{
+	margin-bottom: 70%;
+}
+.aksi-all{
+	margin-bottom: 20%;	
+}
+.btn-tambah{
+	float: right;
+	visibility: hidden;
+}
+.label-nama{
+	color: rgb(217, 217, 217);
+	float: right;
+	font-size: 30px;
+	margin-right: 2%;
+}
+
+
+/*///////////////////////////*/
+/*///////////////////////////*/
+/* style side bar*/

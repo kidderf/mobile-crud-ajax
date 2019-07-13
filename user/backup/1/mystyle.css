@@ -1,0 +1,30 @@
+body{
+	background-color: rgba(77, 136, 255, 0.7);
+}
+.tombol{
+	margin-top: 40px;
+}.container{
+	margin-top: 10%;
+}
+.form-control{
+	margin-top: 2%;
+}
+.judul{
+	font-size: 25px;
+}
+.container{
+	width: 65%;
+}
+.header{
+	color: black; 
+	text-align: center;
+}
+.isi{
+	background-color: rgb(77, 77, 77);
+	border: 1px solid black; 
+	margin-top: 0px; 
+	padding-top: 30px;
+}
+#image{
+	width: 35%;
+}
